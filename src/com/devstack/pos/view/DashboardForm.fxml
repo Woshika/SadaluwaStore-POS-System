@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="context" prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.DashboardFormController">
+   <children>
+      <Label layoutX="24.0" layoutY="24.0" text="Dashboard" textFill="#8d0505">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="24.0" layoutY="55.0" prefHeight="1.0" prefWidth="560.0" />
+      <JFXButton buttonType="RAISED" layoutX="28.0" layoutY="79.0" onAction="#btnCustomerOnAction" prefHeight="92.0" prefWidth="168.0" style="-fx-background-color: #16a085;" text="Customer Management" textAlignment="CENTER" textFill="#fdffff" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="79.0" onAction="#btnProductOnAction" prefHeight="92.0" prefWidth="158.0" style="-fx-background-color: #d35400;" text="Product Management" textAlignment="CENTER" textFill="#fdffff" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="418.0" layoutY="79.0" onAction="#btnPlaceOrderOnAction" prefHeight="92.0" prefWidth="158.0" style="-fx-background-color: #2980b9;" text="Place Order" textAlignment="CENTER" textFill="#fdffff" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="28.0" layoutY="206.0" onAction="#btnOrderDetailsOnAction" prefHeight="92.0" prefWidth="267.0" style="-fx-background-color: #f39c12;" text="Order Details" textAlignment="CENTER" textFill="#fdffff" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="309.0" layoutY="206.0" onAction="#btnIncomeReportOnAction" prefHeight="92.0" prefWidth="267.0" style="-fx-background-color: #e74c3c;" text="Income Report" textAlignment="CENTER" textFill="#fdffff" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

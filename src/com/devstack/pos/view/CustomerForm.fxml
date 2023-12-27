@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="context" prefHeight="466.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.CustomerFormController">
+    <children>
+        <Label layoutX="25.0" layoutY="34.0" text="Customer Management" textFill="#8d0505">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Separator layoutX="25.0" layoutY="65.0" prefHeight="2.0" prefWidth="644.0" />
+        <JFXButton buttonType="RAISED" layoutX="319.0" layoutY="35.0" onAction="#btnBackToHomeOnAction" style="-fx-background-color: #7f8c8d;" text="Back to home" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="418.0" layoutY="35.0" style="-fx-background-color: #27ae60;" text="Manage Loyalty Cards" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="561.0" layoutY="35.0" onAction="#btnNewCustomerOnAction" style="-fx-background-color: #2980b9;" text="+ New Customer" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></JFXButton>
+        <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="25.0" layoutY="82.0" prefHeight="29.0" prefWidth="180.0" promptText="email">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="486.0" layoutY="82.0" prefHeight="29.0" prefWidth="180.0" promptText="contact">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtName" labelFloat="true" layoutX="253.0" layoutY="82.0" prefHeight="29.0" prefWidth="180.0" promptText="name">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <JFXTextField fx:id="txtSalary" labelFloat="true" layoutX="25.0" layoutY="136.0" prefHeight="29.0" prefWidth="180.0" promptText="salary">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <JFXButton fx:id="btnSaveUpdate" buttonType="RAISED" layoutX="533.0" layoutY="136.0" onAction="#btnSaveUpdateOnAction" prefHeight="29.0" prefWidth="133.0" style="-fx-background-color: #2980b9;" text="Save Customer" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></JFXButton>
+        <TextField fx:id="txtSearch" layoutX="25.0" layoutY="182.0" prefHeight="25.0" prefWidth="644.0" promptText="search here" />
+        <TableView fx:id="tbl" layoutX="25.0" layoutY="233.0" prefHeight="200.0" prefWidth="644.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="95.0" text="#" />
+                <TableColumn fx:id="colEmail" prefWidth="112.0" text="email" />
+                <TableColumn fx:id="colName" minWidth="0.0" prefWidth="113.0" text="name" />
+                <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="115.0" text="contact" />
+                <TableColumn fx:id="colSalary" prefWidth="108.0" text="salary" />
+                <TableColumn fx:id="colOperate" minWidth="0.0" prefWidth="100.0" text="Operate" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
