@@ -2,17 +2,18 @@ package com.devstack.pos.dao.custom;
 
 import com.devstack.pos.entity.Product;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductDao {
 
-    public boolean saveProduct(Product customer);
+    public boolean saveProduct(Product customer) throws SQLException, ClassNotFoundException;
 
-    public boolean updateProduct(Product customer);
+    public boolean updateProduct(Product customer) throws SQLException, ClassNotFoundException;
 
-    public boolean deleteProduct(int code);
+    public boolean deleteProduct(int code) throws SQLException, ClassNotFoundException;
 
-    public Product findProduct(int code);
+    public Product findProduct(int code) throws SQLException, ClassNotFoundException;
 
-    public List<Product> findAllProducts();
+    public List<Product> findAllProducts() throws SQLException, ClassNotFoundException;
 }
