@@ -118,4 +118,26 @@ public class DatabaseAccessCode {
         }
         return dtos;
     }
+
+
+    //=========Product Management============
+    public static int getLastProductId() throws SQLException, ClassNotFoundException {
+        String sql="SELECT code FROM product ORDER BY code DESC LIMIT 1";
+        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if(resultSet.next()){
+            return (resultSet.getInt(1)+1);
+        }
+        return 1;
+    }
+
+    public static  boolean saveProduct(int code, String description) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO product VALUES(?,?)";
+        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1,code);
+        preparedStatement.setString(2,description);
+        return preparedStatement.executeUpdate() > 0;
+    }
+
 }
