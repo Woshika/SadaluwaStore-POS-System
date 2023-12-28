@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseAccessCode {
 
-    //================create User========================
+    //================User Management========================
     public static boolean createUser(String email, String password) throws ClassNotFoundException, SQLException, SQLException {
         String sql="INSERT INTO user VALUES (?,?)";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
