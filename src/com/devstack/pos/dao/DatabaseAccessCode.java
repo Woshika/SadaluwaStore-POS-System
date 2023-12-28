@@ -116,7 +116,7 @@ public class DatabaseAccessCode {
         return dtos;
     }
 
-    public  static List<CustomerDto> searchCustomer(String searchText) throws ClassNotFoundException, SQLException {
+    public  static List<CustomerDto> searchCustomers(String searchText) throws ClassNotFoundException, SQLException {
 
         searchText = "%"+searchText + "%";
 

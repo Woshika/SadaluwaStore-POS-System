@@ -27,11 +27,11 @@ public class DashboardFormController {
     public void btnIncomeReportOnAction(ActionEvent actionEvent) {
     }
 
-    private void setUi(String url) throws IOException {
-        Stage stage =  (Stage)context.getScene().getWindow();
+    private void setUi(String url) throws  IOException {
+        Stage stage = (Stage) context.getScene().getWindow();
         stage.centerOnScreen();
         stage.setScene(
-                new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
+                new Scene(FXMLLoader.load(getClass().getResource("../view/" + url + ".fxml")))
         );
     }
 }
