@@ -22,7 +22,7 @@ public class ProductMainFormController {
     }
 
     private void loadProductId() throws SQLException, ClassNotFoundException {
-        txtProductCode.setText(String.valueOf(DatabaseAccessCode.getLastProductId()));
+        txtProductCode.setText(String.valueOf(new DatabaseAccessCode().getLastProductId()));
     }
 
     public void btnBackToHomeOnAction(ActionEvent actionEvent) {
@@ -32,7 +32,7 @@ public class ProductMainFormController {
     public void btnNewProductOnAction(ActionEvent actionEvent) {
         try {
             if (btnSaveUpdate.getText().equals("Save Product")) {
-                if (DatabaseAccessCode.saveProduct(Integer.parseInt(txtProductCode.getText()), txtProductDescription.getText())) {
+                if (new DatabaseAccessCode().saveProduct(Integer.parseInt(txtProductCode.getText()), txtProductDescription.getText())) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Product Saved!").show();
                     clearFields();
                     loadAllProducts(searchText);
@@ -40,7 +40,7 @@ public class ProductMainFormController {
                     new Alert(Alert.AlertType.WARNING, "Try Again!").show();
                 }
             } else {
-                if (DatabaseAccessCode.saveProduct(Integer.parseInt(txtProductCode.getText()), txtProductDescription.getText())) {
+                if (new DatabaseAccessCode().saveProduct(Integer.parseInt(txtProductCode.getText()), txtProductDescription.getText())) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Product Updated!").show();
                     clearFields();
                     loadAllProducts(searchText);
