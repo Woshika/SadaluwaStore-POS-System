@@ -46,6 +46,22 @@ public class CustomerFormController {
 
         loadAllCustomers(searchText);
 
+        tbl.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                setData(newValue);
+            }
+        });
+    }
+
+    private void setData(CustomerTm newValue) {
+        txtEmail.setEditable(false);
+        btnSaveUpdate.setText("Update Customer");
+        txtEmail.setText(newValue.getEmail());
+        txtName.setText(newValue.getName());
+        txtSalary.setText(String.valueOf(newValue.getEmail()));
+        txtContact.setText(newValue.getContact());
     }
 
     private void loadAllCustomers(String searchText) throws SQLException, ClassNotFoundException {
@@ -64,21 +80,37 @@ public class CustomerFormController {
 
     public void btnSaveUpdateOnAction(ActionEvent actionEvent) {
         try {
-            if (DatabaseAccessCode.createCustomer(
-                    txtEmail.getText(), txtName.getText(),
-                    txtContact.getText(), Double.parseDouble(txtSalary.getText())
-            )){
-                new Alert(Alert.AlertType.CONFIRMATION,"Customer Saved!").show();
-                clearFields();
-                loadAllCustomers(searchText);
+
+            if(btnSaveUpdate.getText().equals("Save Customer")){
+                if (DatabaseAccessCode.createCustomer(
+                        txtEmail.getText(), txtName.getText(),
+                        txtContact.getText(), Double.parseDouble(txtSalary.getText())
+                )){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Customer Saved!").show();
+                    clearFields();
+                    loadAllCustomers(searchText);
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Try Again!").show();
+                }
             }else{
-                new Alert(Alert.AlertType.WARNING,"Try Again!").show();
+                if (DatabaseAccessCode.updateCustomer(
+                        txtEmail.getText(), txtName.getText(),
+                        txtContact.getText(), Double.parseDouble(txtSalary.getText())
+                )){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Customer Updated!").show();
+                    clearFields();
+                    loadAllCustomers(searchText);
+                    //----------
+                    txtEmail.setEditable(true);
+                    btnSaveUpdate.setText("Save Customer");
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Try Again!").show();
+                }
             }
         }catch(SQLException | ClassNotFoundException e){
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-
     }
 
     private void clearFields() {
@@ -101,5 +133,9 @@ public class CustomerFormController {
     }
 
     public void btnNewCustomerOnAction(ActionEvent actionEvent) {
+
+        txtEmail.setEditable(true);
+        btnSaveUpdate.setText("Save Customer");
+        clearFields();
     }
 }
