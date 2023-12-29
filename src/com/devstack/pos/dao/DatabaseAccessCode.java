@@ -13,7 +13,6 @@ import com.devstack.pos.entity.Customer;
 import com.devstack.pos.entity.Product;
 import com.devstack.pos.entity.User;
 import com.devstack.pos.enums.DaoType;
-import com.devstack.pos.util.PasswordManager;
 
 import java.sql.*;
 import java.util.ArrayList;
