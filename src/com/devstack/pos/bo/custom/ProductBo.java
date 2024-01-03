@@ -1,9 +1,8 @@
 package com.devstack.pos.bo.custom;
 
 import com.devstack.pos.bo.SuperBo;
-import com.devstack.pos.dto.CustomerDto;
+
 import com.devstack.pos.dto.ProductDto;
-import com.devstack.pos.entity.Product;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +16,7 @@ public interface ProductBo extends SuperBo {
 
     public ProductDto findProduct(int code);
 
-    public List<ProductDto> findAllProducts();
+    public List<ProductDto> findAllProducts() throws SQLException, ClassNotFoundException;
 
     public int getLastProductId() throws SQLException, ClassNotFoundException;
 }

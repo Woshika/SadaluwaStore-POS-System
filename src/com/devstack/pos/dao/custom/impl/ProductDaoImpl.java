@@ -36,7 +36,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean delete(Integer code) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute("DELETE product WHERE code=?",code);
+        return CrudUtil.execute("DELETE FROM product WHERE code=?",code);
     }
 
     @Override
