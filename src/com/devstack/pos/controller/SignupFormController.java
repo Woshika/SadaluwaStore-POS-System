@@ -1,7 +1,7 @@
 package com.devstack.pos.controller;
 
-import com.devstack.pos.dao.DatabaseAccessCode;
-import com.devstack.pos.util.PasswordManager;
+import com.devstack.pos.bo.custom.impl.UserBoImpl;
+import com.devstack.pos.dto.UserDto;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -12,9 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SignupFormController {
@@ -25,7 +22,7 @@ public class SignupFormController {
     public void btnRegisterNowOnAction(ActionEvent actionEvent) {
 
         try{
-            if(new DatabaseAccessCode().createUser(txtEmail.getText(),txtPassword.getText())){
+            if(new UserBoImpl().saveUser(new UserDto(txtEmail.getText(),txtPassword.getText()))){
                 new Alert(Alert.AlertType.CONFIRMATION,"User Saved!").show();
                 clearFields();
             }else{
