@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="context" prefHeight="595.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.ProductMainFormController">
+<AnchorPane prefHeight="595.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.ProductMainFormController">
    <children>
       <Label layoutX="8.0" layoutY="13.0" text="Product Management" textFill="#8d0505">
          <font>
@@ -86,7 +86,7 @@
             <Font size="13.0" />
          </font>
       </TextArea>
-      <JFXButton buttonType="RAISED" layoutX="915.0" layoutY="85.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #2980b9;" text="+ New Batch" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="915.0" layoutY="85.0" onAction="#newBatchOnAction" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #2980b9;" text="+ New Batch" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

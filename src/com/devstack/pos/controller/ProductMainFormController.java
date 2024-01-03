@@ -2,9 +2,7 @@ package com.devstack.pos.controller;
 
 import com.devstack.pos.bo.BoFactory;
 import com.devstack.pos.bo.custom.ProductBo;
-import com.devstack.pos.bo.custom.UserBo;
 import com.devstack.pos.bo.custom.impl.ProductBoImpl;
-import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.dto.ProductDto;
 import com.devstack.pos.enums.BoType;
 import com.devstack.pos.view.tm.ProductTm;
@@ -13,12 +11,9 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,7 +30,6 @@ public class ProductMainFormController {
     public TableColumn colProductDelete;
     public TextField txtSelectedProdId;
     public TextArea txtSelectedProdDescription;
-    public AnchorPane context;
 
     private String searchText = "";
 
@@ -52,6 +46,17 @@ public class ProductMainFormController {
         //----load new product Id----
         loadProductId();
         loadAllProducts(searchText);
+
+
+        tbl.getSelectionModel().selectedItemProperty().addListener((observable, OldValue, newValue) ->{
+
+            setData(newValue);
+        } );
+    }
+
+    private void setData(ProductTm newValue) {
+        txtSelectedProdId.setText(String.valueOf(newValue.getCode()));
+        txtSelectedProdDescription.setText(newValue.getDescription());
     }
 
     private void loadProductId() throws SQLException, ClassNotFoundException {
@@ -59,7 +64,7 @@ public class ProductMainFormController {
     }
 
     public void btnBackToHomeOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("DashboardForm");
+
     }
     //Save Product
     public void btnNewProductOnAction(ActionEvent actionEvent) {
@@ -132,11 +137,6 @@ public class ProductMainFormController {
     public void btnAddNewOnAction(ActionEvent actionEvent) {
     }
 
-    private void setUi(String url) throws IOException {
-        Stage stage =  (Stage) context.getScene().getWindow();
-        stage.centerOnScreen();
-        stage.setScene(
-                new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
-        );
+    public void newBatchOnAction(ActionEvent actionEvent) {
     }
 }
