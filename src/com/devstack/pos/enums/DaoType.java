@@ -2,5 +2,5 @@ package com.devstack.pos.enums;
 
 public enum DaoType {
 
-    USER,CUSTOMER,PRODUCT
+    USER,CUSTOMER,PRODUCT,PRODUCT_DETAIL
 }

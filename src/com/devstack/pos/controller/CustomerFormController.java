@@ -75,7 +75,7 @@ public class CustomerFormController {
         btnSaveUpdate.setText("Update Customer");
         txtEmail.setText(newValue.getEmail());
         txtName.setText(newValue.getName());
-        txtSalary.setText(String.valueOf(newValue.getEmail()));
+        txtSalary.setText(String.valueOf(newValue.getSalary()));
         txtContact.setText(newValue.getContact());
     }
 
