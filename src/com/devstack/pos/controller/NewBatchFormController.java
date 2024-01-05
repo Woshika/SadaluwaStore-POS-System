@@ -85,7 +85,7 @@ public class NewBatchFormController {
 
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage,"barcode",baos);
+        ImageIO.write(bufferedImage,"png",baos);
         byte[] arr = baos.toByteArray();
 
 
@@ -103,12 +103,6 @@ public class NewBatchFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Product detail saved!").show();
                 Thread.sleep(3000);
                 this.stage.close();
-                /*
-                Platform.runLater(() -> {
-
-                });
-                 */
-
             }else{
                 new Alert(Alert.AlertType.CONFIRMATION, "Try Again!").show();
             }
