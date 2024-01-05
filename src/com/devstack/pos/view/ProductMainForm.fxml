@@ -86,7 +86,7 @@
             <Font size="13.0" />
          </font>
       </TextArea>
-      <JFXButton fx:id="btnNewBatch" buttonType="RAISED" disable="true" layoutX="915.0" layoutY="85.0" onAction="#newBatchOnAction" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #2980b9;" text="+ New Batch" textFill="WHITE">
+      <JFXButton fx:id="btnNewBatch" buttonType="RAISED" disable="true" layoutX="870.0" layoutY="85.0" onAction="#newBatchOnAction" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #2980b9;" text="+ Add Product Details" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
