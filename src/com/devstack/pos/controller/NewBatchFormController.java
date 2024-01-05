@@ -7,6 +7,9 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,6 +18,13 @@ import java.awt.image.BufferedImage;
 public class NewBatchFormController {
 
     public ImageView barcodeImage;
+    public TextField txtQty;
+    public TextField txtBuyingPrice;
+    public TextField txtSellingPrice;
+    public TextField txtShowPrice;
+    public TextField txtProductCode;
+    public TextField txtSelectedProductDescription;
+    public RadioButton rBtnYes;
 
     public void initialize() throws WriterException {
         setQRCode();
@@ -38,5 +48,14 @@ public class NewBatchFormController {
 
         Image image = SwingFXUtils.toFXImage(bufferedImage,null);
         barcodeImage.setImage(image);
+    }
+
+    public void setProductCode(int code, String description){
+        txtProductCode.setText(String.valueOf(code));
+        txtSelectedProductDescription.setText(description);
+    }
+
+    public void saveBatch(ActionEvent actionEvent) {
+
     }
 }

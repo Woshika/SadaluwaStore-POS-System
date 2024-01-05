@@ -25,6 +25,22 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> searchProducts(String searchText) throws SQLException, ClassNotFoundException {
+        searchText = "%"+searchText + "%";
+        ResultSet resultSet = CrudUtil.execute("SELECT * FROM product WHERE code LIKE ? || description LIKE ?",searchText,searchText);
+
+        List<Product> dtos = new ArrayList<>();
+        while(resultSet.next()){
+            dtos.add (new Product(
+                    resultSet.getInt(1),
+                    resultSet.getString(2)
+            ));
+        }
+        return dtos;
+    }
+
+
+    @Override
     public boolean save(Product product) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO product VALUES(?,?)",product.getCode(),product.getDescription());
     }
@@ -43,7 +59,9 @@ public class ProductDaoImpl implements ProductDao {
     public Product find(Integer code) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM product WHERE code=?",code);
         if(resultSet.next()){
-            return new Product(resultSet.getInt(1),resultSet.getString(2));
+            return new Product(
+                    resultSet.getInt(1),
+                    resultSet.getString(2));
         }
         return null;
     }

@@ -6,10 +6,10 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="497.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.NewBatchFormController">
    <children>
@@ -24,20 +24,29 @@
             <ImageView fx:id="barcodeImage" fitHeight="228.0" fitWidth="265.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" />
          </children>
       </AnchorPane>
-      <TextField editable="false" layoutX="310.0" layoutY="57.0" prefHeight="36.0" prefWidth="296.0" promptText="Qty" />
-      <TextField editable="false" layoutX="310.0" layoutY="105.0" prefHeight="36.0" prefWidth="296.0" promptText="Buying Price" />
-      <TextField editable="false" layoutX="310.0" layoutY="153.0" prefHeight="36.0" prefWidth="296.0" promptText="Selling Price" />
-      <TextField editable="false" layoutX="310.0" layoutY="201.0" prefHeight="36.0" prefWidth="296.0" promptText="Show Price" />
-      <TextField editable="false" layoutX="13.0" layoutY="302.0" prefHeight="25.0" prefWidth="265.0" promptText="Product ID" />
-      <TextField alignment="TOP_LEFT" editable="false" layoutX="13.0" layoutY="341.0" prefHeight="149.0" prefWidth="593.0" promptText="Description" />
-      <RadioButton layoutX="310.0" layoutY="273.0" mnemonicParsing="false" text="Yes" />
+      <TextField fx:id="txtQty" editable="false" layoutX="310.0" layoutY="57.0" prefHeight="36.0" prefWidth="296.0" promptText="Qty" />
+      <TextField fx:id="txtBuyingPrice" editable="false" layoutX="310.0" layoutY="105.0" prefHeight="36.0" prefWidth="296.0" promptText="Buying Price" />
+      <TextField fx:id="txtSellingPrice" editable="false" layoutX="310.0" layoutY="153.0" prefHeight="36.0" prefWidth="296.0" promptText="Selling Price" />
+      <TextField fx:id="txtShowPrice" editable="false" layoutX="310.0" layoutY="201.0" prefHeight="36.0" prefWidth="296.0" promptText="Show Price" />
+      <TextField fx:id="txtProductCode" editable="false" layoutX="13.0" layoutY="302.0" prefHeight="25.0" prefWidth="265.0" promptText="Product ID" />
+      <TextField fx:id="txtSelectedProductDescription" alignment="TOP_LEFT" editable="false" layoutX="13.0" layoutY="341.0" prefHeight="149.0" prefWidth="593.0" promptText="Description" />
+      <RadioButton fx:id="rBtnYes" layoutX="310.0" layoutY="273.0" mnemonicParsing="false" text="Yes">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <toggleGroup>
+            <ToggleGroup fx:id="discount" />
+         </toggleGroup></RadioButton>
       <Label layoutX="311.0" layoutY="249.0" text="Discount %" textFill="#4699f2">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <RadioButton layoutX="375.0" layoutY="273.0" mnemonicParsing="false" selected="true" text="No" />
-      <JFXButton buttonType="RAISED" layoutX="470.0" layoutY="291.0" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: #3498db;" text="Save Batch" textFill="WHITE">
+      <RadioButton layoutX="375.0" layoutY="273.0" mnemonicParsing="false" selected="true" text="No" toggleGroup="$discount">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></RadioButton>
+      <JFXButton buttonType="RAISED" layoutX="470.0" layoutY="291.0" onAction="#saveBatch" prefHeight="36.0" prefWidth="131.0" style="-fx-background-color: #3498db;" text="Save Batch" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

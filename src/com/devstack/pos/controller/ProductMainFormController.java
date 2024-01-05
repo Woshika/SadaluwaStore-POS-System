@@ -33,6 +33,8 @@ public class ProductMainFormController {
     public TableColumn colProductDelete;
     public TextField txtSelectedProdId;
     public TextArea txtSelectedProdDescription;
+    public TextField txtSearch;
+    public JFXButton btnNewBatch;
 
     private String searchText = "";
 
@@ -54,12 +56,22 @@ public class ProductMainFormController {
         tbl.getSelectionModel().selectedItemProperty().addListener((observable, OldValue, newValue) ->{
 
             setData(newValue);
-        } );
+        });
+
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchText = newValue;
+            try{
+                loadAllProducts(searchText);
+            }catch(SQLException | ClassNotFoundException e){
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void setData(ProductTm newValue) {
         txtSelectedProdId.setText(String.valueOf(newValue.getCode()));
         txtSelectedProdDescription.setText(newValue.getDescription());
+        btnNewBatch.setDisable(false);  //new Batch disable
     }
 
     private void loadProductId() throws SQLException, ClassNotFoundException {
@@ -141,11 +153,20 @@ public class ProductMainFormController {
     }
 
     public void newBatchOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage =  new Stage();
-        stage.centerOnScreen();
-        Parent load = FXMLLoader.load(getClass().getResource("../view/NewBatchForm.fxml"));
-        stage.setScene(new Scene(load));
-        stage.show();
-        stage.centerOnScreen();
+
+        if(!txtSelectedProdId.getText().isEmpty()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/NewBatchForm.fxml"));
+            Parent parent = fxmlLoader.load();
+            NewBatchFormController controller = fxmlLoader.getController();
+            controller.setProductCode(Integer.parseInt(txtSelectedProdId.getText()),
+                    txtSelectedProdDescription.getText());
+            Stage stage =  new Stage();
+            stage.centerOnScreen();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Please select a valid one!");
+        }
+
     }
 }
