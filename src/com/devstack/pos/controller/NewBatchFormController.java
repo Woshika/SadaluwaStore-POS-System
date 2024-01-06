@@ -68,52 +68,77 @@ public class NewBatchFormController {
         barcodeImage.setImage(image);
     }
 
-    public void setDetails(int code, String description, Stage stage, boolean state, ProductDetailTm tm){
+    public void setDetails(int code, String description, Stage stage, boolean state, ProductDetailTm tm) throws WriterException {
         this.stage=stage;
         if(state){
-            productDetailBo.findAllProductDetails()
+            try {
+                ProductDetailDto productDetail = productDetailBo.findProductDetail(tm.getCode());
+
+                if(productDetail!=null){
+                    txtQty.setText(String.valueOf(productDetail.getQtyOnHand()));
+                    txtBuyingPrice.setText(String.valueOf(productDetail.getBuyingPrice()));
+                    txtSellingPrice.setText(String.valueOf(productDetail.getSellingPrice()));
+                    txtShowPrice.setText(String.valueOf(productDetail.getShowPrice()));
+                    rBtnYes.setSelected(productDetail.isDiscountAvailability());
+
+                    //QR
+                }else{
+                    stage.close();
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }else{
+            setQRCode();
+        }
             txtProductCode.setText(String.valueOf(code));
             txtSelectedProductDescription.setText(description);
-        }
-
-
     }
 
     public void saveBatch(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
-        //create productDetail entity , productDetailDao, productDetailDaoImpl,DaoFactory,DaoType,productDetailBo
-        String productCodeText = txtProductCode.getText();
+        // Check if bufferedImage is null
+        if (bufferedImage == null) {
+            new Alert(Alert.AlertType.ERROR, "QR Code image is null!").show();
+            return;
+        }
 
-        // Check if the product code is not null or empty
-        if (productCodeText == null || productCodeText.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Product Code cannot be null or empty!").show();
+        // Check if txtProductCode is not null
+        if (txtProductCode != null) {
+            String productCodeText = txtProductCode.getText();
+
+            // Check if the product code is not null or empty
+            if (productCodeText == null || productCodeText.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Product Code cannot be null or empty!").show();
+                return;
+            }
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Product Code field is null!").show();
             return;
         }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage,"png",baos);
+        ImageIO.write(bufferedImage, "png", baos);
         byte[] arr = baos.toByteArray();
 
         ProductDetailDto dto = new ProductDetailDto(
-                    uniqueData, Base64.encodeBase64String(arr),
-                    Integer.parseInt(txtQty.getText()), Double.parseDouble(txtSellingPrice.getText()),
-                    Double.parseDouble(txtSellingPrice.getText()),
-                    Double.parseDouble(txtBuyingPrice.getText()),
-                    Integer.parseInt(txtProductCode.getText()),
-                    rBtnYes.isSelected()?true:false
-            );
-        try{
-            if(productDetailBo.saveProductDetail(dto)){
+                uniqueData, Base64.encodeBase64String(arr),
+                Integer.parseInt(txtQty.getText()), Double.parseDouble(txtSellingPrice.getText()),
+                Double.parseDouble(txtSellingPrice.getText()),
+                Double.parseDouble(txtBuyingPrice.getText()),
+                Integer.parseInt(txtProductCode.getText()),
+                rBtnYes.isSelected() ? true : false
+        );
+        try {
+            if (productDetailBo.saveProductDetail(dto)) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Product detail saved!").show();
                 Thread.sleep(3000);
                 this.stage.close();
-            }else{
+            } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Try Again!").show();
             }
-        }catch(SQLException | ClassNotFoundException | InterruptedException e){
+        } catch (SQLException | ClassNotFoundException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-
         productDetailBo.saveProductDetail(dto);
     }
 }

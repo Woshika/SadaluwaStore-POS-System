@@ -45,6 +45,14 @@ public class ProductDetailBoImpl<dtos> implements ProductDetailBo {
 
     @Override
     public ProductDetailDto findProductDetail(String code) throws SQLException, ClassNotFoundException {
+        ProductDetail d = dao.findProductDetail(code);
+        if(d!=null){
+            return new ProductDetailDto(
+                    d.getCode(), d.getBarcode(), d.getQtyOnHand(), d.getSellingPrice(),
+                    d.getShowPrice(), d.getBuyingPrice(), d.getProductCode(),
+                    d.isDiscountAvailability()
+            );
+        }
         return null;
     }
 
