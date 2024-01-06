@@ -9,6 +9,7 @@ import com.devstack.pos.dto.ProductDto;
 import com.devstack.pos.enums.BoType;
 import com.devstack.pos.view.tm.ProductDetailTm;
 import com.devstack.pos.view.tm.ProductTm;
+import com.google.zxing.WriterException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -85,7 +86,7 @@ public class ProductMainFormController {
 
             try {
                 loadExternalUi(true,newValue);
-            } catch (IOException e) {
+            } catch (IOException | WriterException e) {
                 e.printStackTrace();
             }
         });
@@ -187,11 +188,11 @@ public class ProductMainFormController {
     public void btnAddNewOnAction(ActionEvent actionEvent) {
     }
 
-    public void newBatchOnAction(ActionEvent actionEvent) throws IOException {
+    public void newBatchOnAction(ActionEvent actionEvent) throws IOException, WriterException {
         loadExternalUi(false,null);
     }
 
-    private void loadExternalUi(boolean state, ProductDetailTm tm) throws IOException {
+    private void loadExternalUi(boolean state, ProductDetailTm tm) throws IOException, WriterException {
         if(!txtSelectedProdId.getText().isEmpty()){
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/NewBatchForm.fxml"));
