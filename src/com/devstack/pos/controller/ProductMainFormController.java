@@ -81,6 +81,16 @@ public class ProductMainFormController {
             }
         });
 
+        tblDetail.getSelectionModel().selectedItemProperty().addListener((observable, OldValue, newValue) ->{
+
+            try {
+                loadExternalUi(true,newValue);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             searchText = newValue;
             try{
@@ -178,14 +188,17 @@ public class ProductMainFormController {
     }
 
     public void newBatchOnAction(ActionEvent actionEvent) throws IOException {
+        loadExternalUi(false,null);
+    }
 
+    private void loadExternalUi(boolean state, ProductDetailTm tm) throws IOException {
         if(!txtSelectedProdId.getText().isEmpty()){
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/NewBatchForm.fxml"));
             Parent parent = fxmlLoader.load();
             NewBatchFormController controller = fxmlLoader.getController();
             controller.setDetails(Integer.parseInt(txtSelectedProdId.getText()),
-                    txtSelectedProdDescription.getText(),stage);
+                    txtSelectedProdDescription.getText(),stage,state,tm);
             stage.centerOnScreen();
             stage.setScene(new Scene(parent));
             stage.show();

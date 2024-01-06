@@ -2,6 +2,7 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDetailDao;
+import com.devstack.pos.entity.Product;
 import com.devstack.pos.entity.ProductDetail;
 
 import java.sql.ResultSet;
@@ -59,5 +60,20 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
             ));
         }
         return list;
+    }
+
+    @Override
+    public ProductDetail findProductDetail(String code) throws SQLException, ClassNotFoundException {
+        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail WHERE code=?",code);
+        if(set.next()){
+            return new ProductDetail(
+                    set.getString(1),set.getString(2),
+                    set.getInt(3),set.getDouble(4),
+                    set.getDouble(6),set.getDouble(8),
+                    set.getInt(7),
+                    set.getBoolean(5)
+            );
+        }
+        return null;
     }
 }

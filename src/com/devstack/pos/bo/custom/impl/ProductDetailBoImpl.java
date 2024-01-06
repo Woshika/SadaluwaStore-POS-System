@@ -44,6 +44,11 @@ public class ProductDetailBoImpl<dtos> implements ProductDetailBo {
     }
 
     @Override
+    public ProductDetailDto findProductDetail(String code) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
     public boolean deleteProductDetail(String code) throws SQLException, ClassNotFoundException {
         return dao.delete(code);
     }

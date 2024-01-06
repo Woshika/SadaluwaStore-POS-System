@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProductDetailDao extends CrudDao<ProductDetail, String> {
 
     public List<ProductDetail> findAllProductDetails(int productCode) throws SQLException, ClassNotFoundException;
+
+    public ProductDetail findProductDetail(String code) throws SQLException, ClassNotFoundException;
 }
