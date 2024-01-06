@@ -65,15 +65,15 @@
             </TableView>
          </children>
       </AnchorPane>
-      <TableView layoutX="469.0" layoutY="292.0" prefHeight="283.0" prefWidth="558.0">
+      <TableView fx:id="tblDetail" layoutX="469.0" layoutY="292.0" prefHeight="283.0" prefWidth="558.0">
          <columns>
-            <TableColumn prefWidth="57.0" text="#" />
-            <TableColumn prefWidth="71.0" text="QTY" />
-            <TableColumn prefWidth="90.0" text="Selling Price" />
-            <TableColumn prefWidth="93.0" text="Buying Price" />
-            <TableColumn prefWidth="86.0" text="D:Av" />
-            <TableColumn prefWidth="91.0" text="Show Price" />
-            <TableColumn prefWidth="78.0" text="Delete" />
+            <TableColumn fx:id="colPDId" prefWidth="57.0" text="#" />
+            <TableColumn fx:id="colPDQty" prefWidth="71.0" text="QTY" />
+            <TableColumn fx:id="colPDSellingPrice" prefWidth="90.0" text="Selling Price" />
+            <TableColumn fx:id="colPDBuyingPrice" prefWidth="93.0" text="Buying Price" />
+            <TableColumn fx:id="colPDDAvailability" prefWidth="86.0" text="D:Av" />
+            <TableColumn fx:id="colPDShowPrice" prefWidth="91.0" text="Show Price" />
+            <TableColumn fx:id="colPDDelete" prefWidth="78.0" text="Delete" />
          </columns>
       </TableView>
       <TextField fx:id="txtSelectedProdId" editable="false" layoutX="469.0" layoutY="83.0" prefHeight="29.0" prefWidth="165.0" promptText="Selected Product Code">

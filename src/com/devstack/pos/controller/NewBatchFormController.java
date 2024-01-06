@@ -83,12 +83,9 @@ public class NewBatchFormController {
             return;
         }
 
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage,"png",baos);
         byte[] arr = baos.toByteArray();
-
-
 
         ProductDetailDto dto = new ProductDetailDto(
                     uniqueData, Base64.encodeBase64String(arr),
@@ -112,6 +109,4 @@ public class NewBatchFormController {
 
         productDetailBo.saveProductDetail(dto);
     }
-
-
 }

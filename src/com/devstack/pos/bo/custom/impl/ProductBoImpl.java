@@ -46,7 +46,7 @@ public class ProductBoImpl implements ProductBo {
     }
 
     @Override
-    public List<ProductDto> findAllProducts() throws SQLException, ClassNotFoundException {
+    public List<ProductDto> findAllProducts(String searchText) throws SQLException, ClassNotFoundException {
         List<ProductDto> dtos = new ArrayList<>();
         for(Product p : productDao.findAll()){
             dtos.add(new ProductDto(p.getCode(), p.getDescription()));

@@ -2,8 +2,6 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDao;
-import com.devstack.pos.db.DbConnection;
-import com.devstack.pos.entity.Customer;
 import com.devstack.pos.entity.Product;
 
 import java.sql.PreparedStatement;
