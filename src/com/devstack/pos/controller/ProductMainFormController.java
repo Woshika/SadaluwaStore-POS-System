@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -47,6 +48,7 @@ public class ProductMainFormController {
     public TableColumn colPDDAvailability;
     public TableColumn colPDShowPrice;
     public TableColumn colPDDelete;
+    public AnchorPane context;
 
     private String searchText = "";
 
@@ -103,11 +105,17 @@ public class ProductMainFormController {
     }
 
     private void setData(ProductTm newValue) throws SQLException, ClassNotFoundException {
-        txtSelectedProdId.setText(String.valueOf(newValue.getCode()));
-        txtSelectedProdDescription.setText(newValue.getDescription());
-        btnNewBatch.setDisable(false);  //new Batch disable
+        if (newValue != null) {
+            txtSelectedProdId.setText(String.valueOf(newValue.getCode()));
+            txtSelectedProdDescription.setText(newValue.getDescription());
+            btnNewBatch.setDisable(false);  //new Batch disable
 
-        loadBatchData(newValue.getCode());
+            try {
+                loadBatchData(newValue.getCode());
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loadProductId() throws SQLException, ClassNotFoundException {
@@ -115,7 +123,14 @@ public class ProductMainFormController {
     }
 
     public void btnBackToHomeOnAction(ActionEvent actionEvent) throws IOException {
-
+        setUi("DashboardForm");
+    }
+    private void setUi(String url) throws IOException {
+        Stage stage =  (Stage) context.getScene().getWindow();
+        stage.centerOnScreen();
+        stage.setScene(
+                new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
+        );
     }
     //Save Product
     public void btnNewProductOnAction(ActionEvent actionEvent) {
@@ -130,9 +145,9 @@ public class ProductMainFormController {
                 }
             } else {
                 if (bo.saveProduct(new ProductDto(Integer.parseInt(txtProductCode.getText()), txtProductDescription.getText()))) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Product Updated!").show();
+                    /* new Alert(Alert.AlertType.CONFIRMATION, "Product Updated!").show();
                     clearFields();
-                    loadAllProducts(searchText);
+                    loadAllProducts(searchText);*/
                     //----------
                     btnSaveUpdate.setText("Save Product");
                 } else {
