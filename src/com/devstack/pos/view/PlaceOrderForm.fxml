@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="662.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.PlaceOrderFormController">
+<AnchorPane fx:id="context" prefHeight="662.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.PlaceOrderFormController">
    <children>
       <Label layoutX="18.0" layoutY="23.0" text="Place Order Form" textFill="#8d0505">
          <font>
@@ -51,7 +51,7 @@
       <TextField editable="false" layoutX="295.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Name" />
       <TextField editable="false" layoutX="533.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Contact" />
       <TextField editable="false" layoutX="769.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Salary" />
-      <JFXButton buttonType="RAISED" layoutX="1056.0" layoutY="69.0" onAction="#btnAddNewOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Customer" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="1056.0" layoutY="69.0" onAction="#btnAddNewCustomerOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Customer" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -68,7 +68,7 @@
          </font>
       </Label>
       <TextField layoutX="134.0" layoutY="254.0" prefHeight="34.0" prefWidth="269.0" promptText="Barcode" />
-      <JFXButton buttonType="RAISED" layoutX="903.0" layoutY="69.0" onAction="#btnAddNewOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Product" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="903.0" layoutY="69.0" onAction="#btnAddNewProductOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Product" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -98,7 +98,7 @@
             <TableColumn prefWidth="116.0" text="operation" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="1064.0" layoutY="591.0" onAction="#btnAddNewOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="Submit Order" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="1064.0" layoutY="591.0" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="Submit Order" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
