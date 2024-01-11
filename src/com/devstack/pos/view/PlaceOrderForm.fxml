@@ -46,18 +46,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <TextField layoutX="18.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Email" />
+      <TextField fx:id="txtEmail" layoutX="18.0" layoutY="169.0" onAction="#SearchCustomer" prefHeight="34.0" prefWidth="217.0" promptText="Email" />
       <Separator layoutX="262.0" layoutY="166.0" orientation="VERTICAL" prefHeight="41.0" prefWidth="3.0" />
-      <TextField editable="false" layoutX="295.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Name" />
-      <TextField editable="false" layoutX="533.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Contact" />
-      <TextField editable="false" layoutX="769.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Salary" />
+      <TextField fx:id="txtName" editable="false" layoutX="295.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Name" />
+      <TextField fx:id="txtContact" editable="false" layoutX="533.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Contact" />
+      <TextField fx:id="txtSalary" editable="false" layoutX="769.0" layoutY="169.0" prefHeight="34.0" prefWidth="217.0" promptText="Salary" />
       <JFXButton buttonType="RAISED" layoutX="1056.0" layoutY="69.0" onAction="#btnAddNewCustomerOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Customer" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Hyperlink layoutX="18.0" layoutY="206.0" text="Show Loyalty Card Information" underline="true" />
-      <Label layoutX="125.0" layoutY="130.0" text="(Gold Member)" textFill="#0b4bc3">
+      <Hyperlink fx:id="urlNewLoyalty" layoutX="18.0" layoutY="206.0" onAction="#newLoyaltyOnAction" text="Show Loyalty Card Information" underline="true" visible="false" />
+      <Label fx:id="lblLoyaltyType" layoutX="125.0" layoutY="130.0" text="(Gold Member)" textFill="#0b4bc3" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
