@@ -2,7 +2,9 @@ package com.devstack.pos.controller;
 
 import com.devstack.pos.bo.BoFactory;
 import com.devstack.pos.bo.custom.CustomerBo;
+import com.devstack.pos.bo.custom.ProductDetailBo;
 import com.devstack.pos.dto.CustomerDto;
+import com.devstack.pos.dto.ProductDetailJoinDto;
 import com.devstack.pos.enums.BoType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,14 @@ public class PlaceOrderFormController {
     public Hyperlink urlNewLoyalty;
     public Label lblLoyaltyType;
     public ToggleGroup model;
+    public TextField txtBarcode;
+    public TextField txtDescription;
+    public TextField txtSellingPrice;
+    public TextField txtDiscount;
+    public TextField txtShowPrice;
+    public TextField txtQty;
+    public TextField txtBuyingPrice;
+    public Label lblDiscount;
 
     CustomerBo bo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
 
@@ -79,6 +89,17 @@ public class PlaceOrderFormController {
     }
 
     public void newLoyaltyOnAction(ActionEvent actionEvent) {
+    }
+
+    public void loadProduct(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ProductDetailJoinDto productJoinDetail = ProductDetailBo.findProductJoinDetail(
+                txtBarcode.getText()
+        );
+        if(productJoinDetail!=null){
+
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Can't Find the Product!");
+        }
     }
 }
 

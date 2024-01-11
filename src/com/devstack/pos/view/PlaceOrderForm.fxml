@@ -67,24 +67,24 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField layoutX="134.0" layoutY="254.0" prefHeight="34.0" prefWidth="269.0" promptText="Barcode" />
+      <TextField fx:id="txtBarcode" layoutX="134.0" layoutY="254.0" onAction="#loadProduct" prefHeight="34.0" prefWidth="269.0" promptText="Barcode" />
       <JFXButton buttonType="RAISED" layoutX="903.0" layoutY="69.0" onAction="#btnAddNewProductOnAction" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="+ New Product" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
       <Separator layoutX="19.0" layoutY="307.0" prefHeight="3.0" prefWidth="1183.0" />
-      <TextField editable="false" layoutX="38.0" layoutY="316.0" prefHeight="34.0" prefWidth="185.0" promptText="Description" />
-      <TextField editable="false" layoutX="237.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Selling Price" />
-      <TextField editable="false" layoutX="394.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Discount" style="-fx-border-color: #27ae60;" />
-      <TextField editable="false" layoutX="551.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Show Price" />
-      <TextField editable="false" layoutX="708.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty On Hand" />
-      <Label layoutX="20.0" layoutY="351.0" text="Discount Available" textFill="#c0392b">
+      <TextField fx:id="txtDescription" editable="false" layoutX="38.0" layoutY="316.0" prefHeight="34.0" prefWidth="185.0" promptText="Description" />
+      <TextField fx:id="txtSellingPrice" editable="false" layoutX="237.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Selling Price" />
+      <TextField fx:id="txtDiscount" editable="false" layoutX="394.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Discount" style="-fx-border-color: #27ae60;" />
+      <TextField fx:id="txtShowPrice" editable="false" layoutX="551.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Show Price" />
+      <TextField fx:id="txtQty" editable="false" layoutX="708.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty On Hand" />
+      <Label fx:id="lblDiscount" layoutX="20.0" layoutY="351.0" text="Discount Available" textFill="#c0392b" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="867.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Buying Price" />
+      <TextField fx:id="txtBuyingPrice" editable="false" layoutX="867.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Buying Price" />
       <TextField editable="false" layoutX="1026.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty" />
       <TableView layoutX="17.0" layoutY="386.0" prefHeight="200.0" prefWidth="1183.0">
         <columns>
