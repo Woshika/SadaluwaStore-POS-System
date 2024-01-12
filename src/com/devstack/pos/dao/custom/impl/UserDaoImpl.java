@@ -2,12 +2,9 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.UserDao;
-import com.devstack.pos.db.DbConnection;
-import com.devstack.pos.dto.UserDto;
 import com.devstack.pos.entity.User;
 import com.devstack.pos.util.PasswordManager;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(String email) throws SQLException, ClassNotFoundException {
+    public boolean delete(int email) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM user WHERE email=?",email);
     }
 

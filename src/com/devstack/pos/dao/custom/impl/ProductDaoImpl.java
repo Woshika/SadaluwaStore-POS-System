@@ -4,7 +4,6 @@ import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDao;
 import com.devstack.pos.entity.Product;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean delete(Integer code) throws SQLException, ClassNotFoundException {
+    public boolean delete(int code) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM product WHERE code=?",code);
     }
 

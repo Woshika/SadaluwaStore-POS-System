@@ -85,17 +85,17 @@
          </font>
       </Label>
       <TextField fx:id="txtBuyingPrice" editable="false" layoutX="867.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Buying Price" />
-      <TextField fx:id="txtQty" layoutX="1026.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty" />
-      <TableView layoutX="17.0" layoutY="386.0" prefHeight="200.0" prefWidth="1183.0">
+      <TextField fx:id="txtQty" layoutX="1026.0" layoutY="316.0" onAction="#addToCart" prefHeight="34.0" prefWidth="148.0" promptText="Qty" />
+      <TableView fx:id="tblCart" layoutX="17.0" layoutY="386.0" prefHeight="200.0" prefWidth="1183.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="#" />
-          <TableColumn prefWidth="318.0" text="Description" />
-            <TableColumn prefWidth="160.0" text="Selling Price" />
-            <TableColumn prefWidth="146.99996948242188" text="Discount" />
-            <TableColumn prefWidth="129.0" text="Show Price" />
-            <TableColumn prefWidth="129.0" text="QTY" />
-            <TableColumn prefWidth="109.0" text="Total Cost" />
-            <TableColumn prefWidth="116.0" text="operation" />
+          <TableColumn fx:id="colCode" prefWidth="75.0" text="#" />
+          <TableColumn fx:id="ColDesc" prefWidth="318.0" text="Description" />
+            <TableColumn fx:id="colSellPrice" prefWidth="160.0" text="Selling Price" />
+            <TableColumn fx:id="colSelDisc" prefWidth="146.99996948242188" text="Discount" />
+            <TableColumn fx:id="colSelShPrice" prefWidth="129.0" text="Show Price" />
+            <TableColumn fx:id="colSelQty" prefWidth="129.0" text="QTY" />
+            <TableColumn fx:id="ColSelTotal" prefWidth="109.0" text="Total Cost" />
+            <TableColumn fx:id="colSelOperation" prefWidth="116.0" text="operation" />
         </columns>
       </TableView>
       <JFXButton buttonType="RAISED" layoutX="1064.0" layoutY="591.0" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="Submit Order" textFill="WHITE">

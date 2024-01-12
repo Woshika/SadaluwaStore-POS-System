@@ -1,6 +1,5 @@
 package com.devstack.pos.dao;
 
-import com.devstack.pos.entity.Customer;
 import com.devstack.pos.entity.SuperEntity;
 
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ public interface CrudDao<T extends SuperEntity, ID> extends SuperDao{
 
     public boolean update(T t) throws SQLException, ClassNotFoundException;
 
-    public boolean delete(ID id) throws SQLException, ClassNotFoundException;
+    public boolean delete(int id) throws SQLException, ClassNotFoundException;
 
     public T find(ID id) throws SQLException, ClassNotFoundException;
 

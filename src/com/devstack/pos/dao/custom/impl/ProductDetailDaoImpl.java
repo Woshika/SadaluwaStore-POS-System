@@ -4,7 +4,6 @@ import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDetailDao;
 import com.devstack.pos.dto.ProductDetailDto;
 import com.devstack.pos.dto.ProductDetailJoinDto;
-import com.devstack.pos.entity.Product;
 import com.devstack.pos.entity.ProductDetail;
 
 import java.sql.ResultSet;
@@ -34,7 +33,7 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
     }
 
     @Override
-    public boolean delete(String code) throws SQLException, ClassNotFoundException {
+    public boolean delete(int code) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM product_detail WHERE code=?",code);
     }
 

@@ -2,10 +2,8 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.CustomerDao;
-import com.devstack.pos.db.DbConnection;
 import com.devstack.pos.entity.Customer;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean delete(String email) throws SQLException, ClassNotFoundException {
+    public boolean delete(int email) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM customer WHERE email=?",email);
     }
 
