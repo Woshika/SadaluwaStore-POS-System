@@ -78,14 +78,14 @@
       <TextField fx:id="txtSellingPrice" editable="false" layoutX="237.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Selling Price" />
       <TextField fx:id="txtDiscount" editable="false" layoutX="394.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Discount" style="-fx-border-color: #27ae60;" />
       <TextField fx:id="txtShowPrice" editable="false" layoutX="551.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Show Price" />
-      <TextField fx:id="txtQty" editable="false" layoutX="708.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty On Hand" />
+      <TextField fx:id="txtQtyOnHand" editable="false" layoutX="708.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty On Hand" />
       <Label fx:id="lblDiscount" layoutX="20.0" layoutY="351.0" text="Discount Available" textFill="#c0392b" visible="false">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
       <TextField fx:id="txtBuyingPrice" editable="false" layoutX="867.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Buying Price" />
-      <TextField editable="false" layoutX="1026.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty" />
+      <TextField fx:id="txtQty" editable="false" layoutX="1026.0" layoutY="316.0" prefHeight="34.0" prefWidth="148.0" promptText="Qty" />
       <TableView layoutX="17.0" layoutY="386.0" prefHeight="200.0" prefWidth="1183.0">
         <columns>
           <TableColumn prefWidth="75.0" text="#" />

@@ -31,11 +31,13 @@ public class PlaceOrderFormController {
     public TextField txtSellingPrice;
     public TextField txtDiscount;
     public TextField txtShowPrice;
-    public TextField txtQty;
     public TextField txtBuyingPrice;
     public Label lblDiscount;
+    public TextField txtQtyOnHand;
+    public TextField txtQty;
 
     CustomerBo bo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
+    private ProductDetailBo productDetailBo = BoFactory.getInstance().getBo(BoType.PRODUCT_DETAIL);
 
     public void btnBackToHomeOnAction(ActionEvent actionEvent) throws IOException {
         setUi("DashboardForm",false);
@@ -91,14 +93,24 @@ public class PlaceOrderFormController {
     public void newLoyaltyOnAction(ActionEvent actionEvent) {
     }
 
-    public void loadProduct(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        ProductDetailJoinDto productJoinDetail = ProductDetailBo.findProductJoinDetail(
-                txtBarcode.getText()
-        );
-        if(productJoinDetail!=null){
-
-        }else{
-            new Alert(Alert.AlertType.WARNING,"Can't Find the Product!");
+    public void loadProduct(ActionEvent actionEvent) {
+        try{
+            ProductDetailJoinDto p = productDetailBo.findProductJoinDetail(
+                    txtBarcode.getText()
+            );
+            if(p!=null){
+                txtDescription.setText(p.getDescription());
+                txtDiscount.setText(String.valueOf(0));
+                txtSellingPrice.setText(String.valueOf(p.getDto().getSellingPrice()));
+                txtShowPrice.setText(String.valueOf(p.getDto().getShowPrice()));
+                txtQtyOnHand.setText(String.valueOf(p.getDto().getQtyOnHand()));
+                txtBuyingPrice.setText(String.valueOf(p.getDto().getBuyingPrice()));
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Can't Find the Product!").show();
+            }
+        }catch(SQLException | ClassNotFoundException e){
+            new Alert(Alert.AlertType.WARNING,"Can't Find the Product!").show();
+            throw new RuntimeException(e);
         }
     }
 }

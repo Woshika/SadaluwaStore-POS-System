@@ -1,6 +1,5 @@
 package com.devstack.pos.dto;
 
-import com.devstack.pos.dto.ProductDetailDto;
 
 public class ProductDetailJoinDto {
 

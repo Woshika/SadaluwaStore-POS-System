@@ -14,7 +14,7 @@ public interface ProductDetailBo extends SuperBo {
 
     public ProductDetailDto findProductDetail(String code) throws SQLException, ClassNotFoundException;
 
-    public static ProductDetailJoinDto findProductJoinDetail(String code) throws SQLException, ClassNotFoundException;
+    public  ProductDetailJoinDto findProductJoinDetail(String code) throws SQLException, ClassNotFoundException;
 
     public boolean deleteProductDetail(String code) throws SQLException, ClassNotFoundException;
 }
