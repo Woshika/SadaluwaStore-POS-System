@@ -169,10 +169,22 @@ public class PlaceOrderFormController {
                 setTotal();
             });
             tms.add(tm);
+            clear();
             tblCart.setItems(tms);
             setTotal();
         }
 
+    }
+    private void clear(){
+        txtDescription.clear();
+        txtSellingPrice.clear();
+        txtDiscount.clear();
+        txtShowPrice.clear();
+        txtQtyOnHand.clear();
+        txtBuyingPrice.clear();
+        txtQty.clear();
+        txtBarcode.clear();
+        txtBarcode.requestFocus();
     }
 
     private CartTm isExists(String code){
