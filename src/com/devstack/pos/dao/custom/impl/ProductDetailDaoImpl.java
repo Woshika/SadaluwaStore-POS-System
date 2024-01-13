@@ -135,6 +135,13 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
         return productDetailBo.deleteProductDetail(code);
     }
 
+    @Override
+    public boolean manageQty(String barcode,int qty) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute(
+                "UPDATE product_detail qty_on_hand=(qty_on_hand-?) WHERE code=?",qty,barcode
+        );
+    }
+
     public boolean delete(String code) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM product_detail WHERE code=?", code);
     }
