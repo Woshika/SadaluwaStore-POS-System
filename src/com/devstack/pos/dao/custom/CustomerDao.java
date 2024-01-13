@@ -10,4 +10,6 @@ import java.util.List;
 public interface CustomerDao extends CrudDao<Customer,String> {
 
     public List<Customer> searchCustomers(String searchText) throws SQLException, ClassNotFoundException;
+
+    public  boolean delete(String email) throws SQLException, ClassNotFoundException;
 }

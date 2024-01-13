@@ -2,7 +2,6 @@ package com.devstack.pos.controller;
 
 import com.devstack.pos.bo.BoFactory;
 import com.devstack.pos.bo.custom.CustomerBo;
-import com.devstack.pos.bo.custom.ProductBo;
 import com.devstack.pos.bo.custom.ProductDetailBo;
 import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.dto.ProductDetailJoinDto;
@@ -20,7 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
+
 
 public class PlaceOrderFormController {
 
@@ -147,20 +146,35 @@ public class PlaceOrderFormController {
         int qty = Integer.parseInt(txtQty.getText());
         double sellingPrice = Double.parseDouble(txtSellingPrice.getText());
         double totalCost = qty * sellingPrice;
-        Button btn = new Button("Remove");
+        CartTm selectedCartTm = isExists(txtBarcode.getText());
+        if(selectedCartTm!=null){
+            selectedCartTm.setQty(qty+selectedCartTm.getQty());
+            selectedCartTm.setTotalCost(totalCost+selectedCartTm.getTotalCost());
+            tblCart.refresh();
+        }else{
+            Button btn = new Button("Remove");
 
-        CartTm tm = new CartTm(txtBarcode.getText(),
-                txtDescription.getText(),
-                Double.parseDouble(txtDiscount.getText()),
-                sellingPrice,
-                Double.parseDouble(txtShowPrice.getText()),
-                qty,
-                totalCost,
-                btn);
-        tms.add(tm);
+            CartTm tm = new CartTm(txtBarcode.getText(),
+                    txtDescription.getText(),
+                    Double.parseDouble(txtDiscount.getText()),
+                    sellingPrice,
+                    Double.parseDouble(txtShowPrice.getText()),
+                    qty,
+                    totalCost,
+                    btn);
+            tms.add(tm);
+            tblCart.setItems(tms);
+        }
 
+    }
 
-        tblCart.setItems(tms);
+    private CartTm isExists(String code){
+        for(CartTm tm : tms){
+            if(tm.getCode().equals(code)){
+                return tm;
+            }
+        }
+        return null;
     }
 }
 

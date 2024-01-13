@@ -52,4 +52,9 @@ public class UserDaoImpl implements UserDao {
         }
         return userList;
     }
+
+    @Override
+    public boolean delete(String email) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("DELETE FROM user WHERE email=?", email);
+    }
 }

@@ -19,6 +19,7 @@ public class BoFactory {
         return (boFactory==null)?boFactory = new BoFactory() : boFactory;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T getBo(BoType boType){
         switch(boType){
             case USER:

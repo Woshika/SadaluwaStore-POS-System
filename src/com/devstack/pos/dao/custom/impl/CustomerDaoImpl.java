@@ -29,6 +29,11 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
+    public boolean delete(String email) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("DELETE FROM customer WHERE email=?", email);
+    }
+
+    @Override
     public boolean save(Customer customer) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO customer VALUES (?,?,?,?)",
                 customer.getEmail(), customer.getName(), customer.getContact(), customer.getSalary());

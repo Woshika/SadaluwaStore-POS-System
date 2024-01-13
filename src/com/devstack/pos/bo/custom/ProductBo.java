@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductBo extends SuperBo {
+
     public boolean saveProduct(ProductDto dto) throws SQLException, ClassNotFoundException;
 
     public boolean updateProduct(ProductDto dto) throws SQLException, ClassNotFoundException;

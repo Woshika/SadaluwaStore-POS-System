@@ -239,20 +239,25 @@ public class ProductMainFormController {
                 try {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure?", ButtonType.YES, ButtonType.NO);
                     Optional<ButtonType> selectedButtonType = alert.showAndWait();
-                    if (selectedButtonType.get().equals(ButtonType.YES)) {
+
+                    if (selectedButtonType.isPresent() && selectedButtonType.get().equals(ButtonType.YES)) {
                         if (detailBo.deleteProductDetail(p.getCode())) {
+                            System.out.println("Product Detail Deleted!");
                             new Alert(Alert.AlertType.CONFIRMATION, "Product Detail Deleted!").show();
                             clearFields();
                             loadBatchData(code); // Reload batch data after deletion
                         } else {
+                            System.out.println("Deletion Failed. Check return value of deleteProductDetail method.");
                             new Alert(Alert.AlertType.WARNING, "Try Again!").show();
                         }
                     }
                 } catch (SQLException | ClassNotFoundException exception) {
                     exception.printStackTrace();
+                    System.out.println("Error: " + exception.getMessage());
                     new Alert(Alert.AlertType.ERROR, exception.getMessage()).show();
                 }
             });
+
         }
         tblDetail.setItems(obList);
     }

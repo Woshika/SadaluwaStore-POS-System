@@ -1,5 +1,7 @@
 package com.devstack.pos.dao.custom.impl;
 
+import com.devstack.pos.bo.custom.ProductDetailBo;
+import com.devstack.pos.bo.custom.impl.ProductDetailBoImpl;
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDetailDao;
 import com.devstack.pos.dto.ProductDetailDto;
@@ -28,8 +30,17 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
     }
 
     @Override
-    public boolean update(ProductDetail batch) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean update(ProductDetail productDetail) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("UPDATE product_detail SET barcode=?, qty_on_hand=?, selling_price=?, discount_availability=?, show_price=?, product_code=?, buying_price=? WHERE code=?",
+                productDetail.getBarcode(),
+                productDetail.getQtyOnHand(),
+                productDetail.getSellingPrice(),
+                productDetail.isDiscountAvailability(),
+                productDetail.getShowPrice(),
+                productDetail.getProductCode(),
+                productDetail.getBuyingPrice(),
+                productDetail.getCode()
+        );
     }
 
     @Override
@@ -39,12 +50,33 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 
     @Override
     public ProductDetail find(String code) throws SQLException, ClassNotFoundException {
+        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail WHERE code=?", code);
+        if (set.next()) {
+            return new ProductDetail(
+                    set.getString(1), set.getString(2),
+                    set.getInt(3), set.getDouble(4),
+                    set.getDouble(6), set.getDouble(8),
+                    set.getInt(7),
+                    set.getBoolean(5)
+            );
+        }
         return null;
     }
 
     @Override
     public List<ProductDetail> findAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail");
+        List<ProductDetail> list = new ArrayList<>();
+        while (set.next()) {
+            list.add(new ProductDetail(
+                    set.getString(1), set.getString(2),
+                    set.getInt(3), set.getDouble(4),
+                    set.getDouble(6), set.getDouble(8),
+                    set.getInt(7),
+                    set.getBoolean(5)
+            ));
+        }
+        return list;
     }
 
     @Override
@@ -95,5 +127,15 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
             );
         }
         return null;
+    }
+
+    @Override
+    public boolean deleteProductDetail(String code) throws SQLException, ClassNotFoundException {
+        ProductDetailBo productDetailBo = new ProductDetailBoImpl();
+        return productDetailBo.deleteProductDetail(code);
+    }
+
+    public boolean delete(String code) throws SQLException, ClassNotFoundException {
+        return CrudUtil.execute("DELETE FROM product_detail WHERE code=?", code);
     }
 }

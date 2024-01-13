@@ -4,9 +4,9 @@ import com.devstack.pos.dao.CrudDao;
 import com.devstack.pos.entity.User;
 
 import java.sql.SQLException;
-import java.util.List;
+
 
 public interface UserDao extends CrudDao<User, String> {
 
-
+    public boolean delete(String userId) throws SQLException, ClassNotFoundException;
 }
