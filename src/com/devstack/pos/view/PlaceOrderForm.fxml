@@ -97,7 +97,7 @@
             <TableColumn fx:id="colSelOperation" prefWidth="116.0" text="operation" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="1064.0" layoutY="591.0" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="Submit Order" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="1064.0" layoutY="591.0" onAction="#btnCompleteOrder" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #2980b9;" text="Submit Order" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
