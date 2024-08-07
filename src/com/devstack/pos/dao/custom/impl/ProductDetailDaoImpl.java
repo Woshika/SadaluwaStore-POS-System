@@ -1,7 +1,5 @@
 package com.devstack.pos.dao.custom.impl;
 
-import com.devstack.pos.bo.custom.ProductDetailBo;
-import com.devstack.pos.bo.custom.impl.ProductDetailBoImpl;
 import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.ProductDetailDao;
 import com.devstack.pos.dto.ProductDetailDto;
@@ -45,7 +43,7 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 
     @Override
     public boolean delete(int code) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute("DELETE FROM product_detail WHERE code=?",code);
+        return CrudUtil.execute("DELETE FROM product_detail WHERE code=?", code);
     }
 
     @Override
@@ -83,11 +81,11 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
     public List<ProductDetail> findAllProductDetails(int productCode) throws SQLException, ClassNotFoundException {
         ResultSet set = CrudUtil.execute("SELECT * FROM product_detail WHERE product_code=?", productCode);
         List<ProductDetail> list = new ArrayList<>();
-        while(set.next()){
+        while (set.next()) {
             list.add(new ProductDetail(
-                    set.getString(1),set.getString(2),
-                    set.getInt(3),set.getDouble(4),
-                    set.getDouble(6),set.getDouble(8),
+                    set.getString(1), set.getString(2),
+                    set.getInt(3), set.getDouble(4),
+                    set.getDouble(6), set.getDouble(8),
                     set.getInt(7),
                     set.getBoolean(5)
             ));
@@ -97,12 +95,12 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 
     @Override
     public ProductDetail findProductDetail(String code) throws SQLException, ClassNotFoundException {
-        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail WHERE code=?",code);
-        if(set.next()){
+        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail WHERE code=?", code);
+        if (set.next()) {
             return new ProductDetail(
-                    set.getString(1),set.getString(2),
-                    set.getInt(3),set.getDouble(4),
-                    set.getDouble(6),set.getDouble(8),
+                    set.getString(1), set.getString(2),
+                    set.getInt(3), set.getDouble(4),
+                    set.getDouble(6), set.getDouble(8),
                     set.getInt(7),
                     set.getBoolean(5)
             );
@@ -112,15 +110,15 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 
     @Override
     public ProductDetailJoinDto findProductDetailJoinData(String code) throws SQLException, ClassNotFoundException {
-        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail pd JOIN product p ON pd.code=? AND pd.product_code=p.code",code);
-        if(set.next()){
+        ResultSet set = CrudUtil.execute("SELECT * FROM product_detail pd JOIN product p ON pd.code=? AND pd.product_code=p.code", code);
+        if (set.next()) {
             return new ProductDetailJoinDto(
                     set.getInt(9),
                     set.getString(10),
                     new ProductDetailDto(
-                            set.getString(1),set.getString(2),
-                            set.getInt(3),set.getDouble(4),
-                            set.getDouble(6),set.getDouble(8),
+                            set.getString(1), set.getString(2),
+                            set.getInt(3), set.getDouble(4),
+                            set.getDouble(6), set.getDouble(8),
                             set.getInt(7),
                             set.getBoolean(5)
                     )
@@ -131,18 +129,14 @@ public class ProductDetailDaoImpl implements ProductDetailDao {
 
     @Override
     public boolean deleteProductDetail(String code) throws SQLException, ClassNotFoundException {
-        ProductDetailBo productDetailBo = new ProductDetailBoImpl();
-        return productDetailBo.deleteProductDetail(code);
+        return CrudUtil.execute("DELETE FROM product_detail WHERE code=?", code);
     }
+
 
     @Override
-    public boolean manageQty(String barcode,int qty) throws SQLException, ClassNotFoundException {
+    public boolean manageQty(String barcode, int qty) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "UPDATE product_detail SET qty_on_hand=(qty_on_hand-?) WHERE code=?",qty,barcode
+                "UPDATE product_detail SET qty_on_hand=(qty_on_hand-?) WHERE code=?", qty, barcode
         );
-    }
-
-    public boolean delete(String code) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute("DELETE FROM product_detail WHERE code=?", code);
     }
 }
